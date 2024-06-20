@@ -2,8 +2,13 @@
 import os
 import numpy as np
 import numpy.testing as npt
+<<<<<<< HEAD
 import pytest
 
+=======
+import os
+import pytest
+>>>>>>> feature-std-dev
 
 def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
@@ -41,6 +46,7 @@ def test_load_from_json(tmpdir):
     npt.assert_array_equal(result, [[1, 2, 3], [4, 5, 6]])
 
 
+<<<<<<< HEAD
 def test_daily_min_string():
     """Test for TypeError when passing strings"""
     from inflammation.models import daily_min
@@ -97,3 +103,14 @@ def test_patient_normalise(test, expected, expect_raises):
             npt.assert_almost_equal(patient_normalise(np.array(test)), np.array(expected), decimal=2)
     else:
         npt.assert_almost_equal(patient_normalise(np.array(test)), np.array(expected), decimal=2)
+=======
+@pytest.mark.parametrize('data, expected_standard_deviation', [
+    ([0, 0, 0], 0.0),
+    ([1.0, 1.0, 1.0], 0),
+    ([0.0, 2.0], 1.0)
+])
+def test_daily_standard_deviation(data, expected_standard_deviation):
+    from inflammation.models import s_dev
+    result_data = s_dev(data)['standard deviation']
+    npt.assert_approx_equal(result_data, expected_standard_deviation)
+>>>>>>> feature-std-dev
